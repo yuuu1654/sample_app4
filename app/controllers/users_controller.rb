@@ -5,6 +5,9 @@ class UsersController < ApplicationController
     
   end
 
+  def index
+  end
+
   #form_withの引数で必要となるUserオブジェクトを作成
   def new
     @user = User.new
@@ -13,7 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      #保存成功の処理
+      log_in @user
       flash[:success] = "ようこそサンプルウプにお越しくださいました！"
       redirect_to @user #redirect_to user_url(@user)と同じ
     else

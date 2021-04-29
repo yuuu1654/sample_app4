@@ -7,4 +7,11 @@ class User < ApplicationRecord
             uniqueness: true #beforeセーブで小文字で保存するようにしているから！
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
+
+  #渡された文字列のハッシュ値を返す
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                            BCrypt::Engine.const
+    BCrypt::Password.create(string, cost: cost)
+  end
 end

@@ -1,12 +1,11 @@
 require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
-  #ユーザー登録ボタンを押したときに(情報が無効な為に)、
-  #ユーザーが作成されない事を確認
-  #ユーザー数が（前と後で）同じというよりも、違わない事をテストする
-  
 
   test "invalid signup information" do
+    #ユーザー登録ボタンを押したときに(情報が無効な為に)、
+    #ユーザーが作成されない事を確認
+    #ユーザー数が（前と後で）同じというよりも、違わない事をテストする
     get signup_path
     assert_no_difference 'User.count' do
       post users_path, params: { user: { name: "", 
@@ -27,6 +26,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/show'
+    assert is_logged_in?
   end
 
 end
