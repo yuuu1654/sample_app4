@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       # ユーザーログイン後にユーザー情報のページにリダイレクトされる
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to user
+      redirect_back_or user
     else
       flash.now[:danger] = '宜しくないeーマイルとパスワードのコンビネーションダスよ'
       render 'new'

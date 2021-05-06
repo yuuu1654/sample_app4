@@ -7,7 +7,7 @@ class User < ApplicationRecord
             format: {with: VALID_EMAIL_REGEX},
             uniqueness: true #beforeセーブで小文字で保存するようにしているから！
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   #渡された文字列のハッシュ値を返す
   def User.digest(string)
