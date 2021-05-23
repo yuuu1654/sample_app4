@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy' 
 
   resources :users #多数の名前付きルート&アクションが利用できる
+  resources :account_activations, only: [:edit]
 end
