@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
         redirect_to root_path
       end
     else
-      flash.now[:danger] = '宜しくないeーマイルとパスワードのコンビネーションダスよ'
+      flash.now[:danger] = '宜しくないeーマイルとパスワードのコンビネーションだすよ'
       render 'new'
     end
   end

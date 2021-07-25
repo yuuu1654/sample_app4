@@ -1,0 +1,48 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+nattou:
+  content: "私は最近毎日納豆を食べています。"
+  created_at: <%= 10.minutes.ago %>
+  user: yuuu
+
+most_recent: 
+  content: "Rails Tutorialを勉強しております。"
+  created_at: <%= Time.zone.now %>
+  user: yuuu
+
+have_think:
+  content: "3年前は何もやりたい事がなく、詐欺にもあって、この先どうすれば良いかずっと考えていました。"
+  created_at: <%= 3.years.ago %>
+  user: yuuu
+
+have_think2:
+  content: "左肺に違和感を感じて癌じゃないのかとても不安になった。また異常があればすぐに病院に行こう！"
+  created_at: <%= 1.minutes.ago %>
+  user: yuuu
+
+<% 30.times do |n| %>
+micropost_<%= n %>:
+  content: <%= Faker::Lorem.sentence(word_count: 5) %>
+  created_at: <%= 42.days.ago %>
+  user: yuuu
+<% end %>
+
+oppai1:
+  content: "最近おっぱいが大きくなってきた"
+  created_at: <%= 2.years.ago %>
+  user: akane
+
+daigaku:
+  content: "大学に進学したいな"
+  created_at: <%= 7.years.ago %>
+  user: akane
+
+voice:
+  content: "自分でも自分の声はエロいと感じる"
+  created_at: <%= 7.days.ago %>
+  user: konomi
+
+oppai2:
+  content: "最近おっぱいが大きくなってきた"
+  created_at: <%= 3.days.ago %>
+  user: konomi

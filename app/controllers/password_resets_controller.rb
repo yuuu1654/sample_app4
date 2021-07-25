@@ -19,9 +19,14 @@ class PasswordResetsController < ApplicationController
     end
   end
 
+
+  #GET /password_resets/:id/edit
   def edit
+    #default render
   end
 
+
+  #PATCH  /password_resets/:id
   def update
     if params[:user][:password].empty?
       #@userオブジェクトにエラ-メッセージを追加する
@@ -37,7 +42,7 @@ class PasswordResetsController < ApplicationController
   end
 
   private
-
+    #Strong Parameter
     def user_params
       params.require(:user).permit(:password, :password_confirmation)
     end
@@ -45,6 +50,7 @@ class PasswordResetsController < ApplicationController
     #beforeフィルター
 
     def get_user
+      #他のメソッドでも呼び出したいのでローカル変数ではなくインスタンス変数にしないとダメ！
       @user = User.find_by(email: params[:email])
     end
 

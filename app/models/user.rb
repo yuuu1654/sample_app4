@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+
+  #ユーザーがマイクロポストを複数所有する関連付け(手動で行う)
+  #micropostは所有者（user）と一緒に破棄される事を保証
+  has_many :microposts, dependent: :destroy
+
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest
@@ -71,7 +76,14 @@ class User < ApplicationRecord
 
   #パスワード再設定の期限が切れている場合はtrueを返す
   def password_reset_expired?
-    reset_sent_at < 2.hours.ago
+    #< 記号を「〜より早い時刻」と読んでください
+    #「少ない」と読んでしまうと混乱するので注意！
+    self.reset_sent_at < 2.hours.ago
+  end
+
+  #試作feedの定義
+  def feed
+    Micropost.where("user_id = ?", self.id)
   end
 
   private

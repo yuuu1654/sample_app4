@@ -5,9 +5,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
+    #Usersコントローラのコンテキストからマイクロポストをページネーションしたいため
+    #（つまりコンテキストが異なるため）、明示的に@microposts変数をwill_paginateに渡す必要があります。
   end
 
-  def index
+  def index #ユーザーの一覧を表示させるアクション
     @users = User.paginate(page: params[:page])
   end
 
@@ -56,15 +59,6 @@ class UsersController < ApplicationController
     end
 
     #beforeアクション
-
-    #ログイン済みユーザーかどうかの確認
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "ログインおねげしヤス"
-        redirect_to login_url
-      end
-    end
 
     #正しいユーザーかどうか確認
     def correct_user
