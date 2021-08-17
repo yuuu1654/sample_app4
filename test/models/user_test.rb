@@ -71,4 +71,16 @@ class UserTest < ActiveSupport::TestCase
       @user.destroy
     end
   end
+
+  #following/followersメソッドが機能しているかの確認
+  test "should follow and unfollow a user" do
+    yuuu = users(:yuuu)
+    azusa = users(:azusa)
+    assert_not yuuu.following?(azusa)
+    yuuu.follow(azusa)
+    assert yuuu.following?(azusa)
+    assert azusa.followers.include?(yuuu)
+    yuuu.unfollow(azusa)
+    assert_not yuuu.following?(azusa)
+  end
 end

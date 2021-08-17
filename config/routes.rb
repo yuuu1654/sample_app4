@@ -10,7 +10,15 @@ Rails.application.routes.draw do
   post '/login',    to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy' 
 
-  resources :users #多数の名前付きルート&アクションが利用できる
+  #多数の名前付きルート&アクションが利用できる
+  #GET => /users/1/following
+  #アクション => following
+  #名前付きルート => following_user_path(1)
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
   resources :account_activations, only: [:edit]
 
@@ -19,4 +27,6 @@ Rails.application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   #POST /microposts microposts_path
   #DELETE /microposts/1 micropost_path(micropost)
+
+  resources :relationships, only: [:create, :destroy]
 end

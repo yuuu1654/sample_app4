@@ -1,4 +1,5 @@
 class Micropost < ApplicationRecord
+
   #自動生成されたもの
   belongs_to :user
 

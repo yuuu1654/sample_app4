@@ -1,0 +1,15 @@
+one:
+  follower: yuuu
+  followed: akane
+
+two:
+  follower: yuuu
+  followed: konomi
+
+three:
+  follower: akane
+  followed: yuuu
+
+four:
+  follower: azusa
+  followed: yuuu

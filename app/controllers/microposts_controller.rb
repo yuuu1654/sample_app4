@@ -5,12 +5,14 @@ class MicropostsController < ApplicationController
   def create
     @micropost = current_user.microposts.build(micropost_params)
     @micropost.image.attach(params[:micropost][:image]) #アップロードされた画像を@micropostオブジェクトにアタッチする
+    #投稿が保存されるかどうかで処理を分岐させる
     if @micropost.save
       flash[:success] = "Micropost 作りやした！"
       redirect_to root_path
     else
       @feed_items = current_user.feed.paginate(page: params[:page])
       render 'static_pages/home'
+      #render 'ファイル名/ビュー名'
     end
   end
 
