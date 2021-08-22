@@ -83,4 +83,24 @@ class UserTest < ActiveSupport::TestCase
     yuuu.unfollow(azusa)
     assert_not yuuu.following?(azusa)
   end
+
+  test "feed should have the right posts" do
+    yuuu = users(:yuuu)
+    akane = users(:akane)
+    azusa = users(:azusa)
+
+    #フォローしているユーザーの投稿を確認
+    akane.microposts.each do |post_following|
+      assert yuuu.feed.include?(post_following)
+    end
+    #自分自身の投稿を確認
+    yuuu.microposts.each do |post_self|
+      assert yuuu.feed.include?(post_self)
+    end
+    #フォローしていないユーザーの投稿を確認
+    azusa.microposts.each do |post_unfollowed|
+      assert_not yuuu.feed.include?(post_unfollowed)
+    end
+  end
+
 end

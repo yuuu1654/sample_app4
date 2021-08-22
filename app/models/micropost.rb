@@ -7,7 +7,7 @@ class Micropost < ApplicationRecord
   #has_many_attached で１投稿に複数の画像をアップロードすることも出来る
   has_one_attached :image
 
-  #default_scopeでマイクロポストを順序づける/降順（descending）
+  #default_scopeでマイクロポストを順序づける/降順（descending）新しい順
   default_scope -> { self.order(created_at: :desc) }
 
   #micropostのuser_idに対する検証

@@ -8,6 +8,9 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
 
+    #has_secure_passwordメソッドを有効にすると、authenticateメソッドを使えるようになります。
+    #authenticateメソッドは渡された引数をハッシュ化し、password_digestの値と一致するかどうかを判定してくれます。
+
     # ユーザーがデータベースにあり、かつ、認証に成功した場合にのみ
     if user && user.authenticate(params[:session][:password])
       if user.activated?
